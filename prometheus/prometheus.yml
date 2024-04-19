@@ -9,10 +9,11 @@ alerting:
   alertmanagers:
     - static_configs:
         - targets:
-            # - alertmanager:9093
+             - 127.0.0.1:9093
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
+  - alerts.yml
   # - "first_rules.yml"
   # - "second_rules.yml"
 
@@ -30,3 +31,13 @@ scrape_configs:
     honor_labels: true
     static_configs:
       - targets: ["pushgateway:9091"]
+
+  - job_name: prometheus
+    static_configs:
+      - targets: ["prometheus:9090"]
+        labels:
+          instance: prometheus
+
+
+
+

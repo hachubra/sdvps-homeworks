@@ -45,7 +45,7 @@ services:
       - 9093:9093
     volumes:
       - ./alertmanager:/etc/alertmanager
-      - alertmanager-data:/data
+      - alertmanager-data:/alertmanager
     networks:
       - soloviev-alex-my-netology-hw
     depends_on:
