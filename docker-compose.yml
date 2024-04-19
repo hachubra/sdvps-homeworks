@@ -37,7 +37,22 @@ services:
     depends_on:
       - prometheus
     restart: unless-stopped
+  alertmanager:
+    image: prom/alertmanager:v0.26.0
+    container_name: soloviev-alex-netology-alertmanager
+    command: --config.file=/etc/alertmanager/alertmanager.yml
+    ports:
+      - 9093:9093
+    volumes:
+      - ./alertmanager:/etc/alertmanager
+      - alertmanager-data:/data
+    networks:
+      - soloviev-alex-my-netology-hw
+    depends_on:
+      - prometheus
+    restart: always
 volumes:
+  alertmanager-data:
   grafana-data:
   prometheus-data:
 networks:
